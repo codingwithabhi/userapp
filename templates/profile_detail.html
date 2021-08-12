@@ -1,0 +1,48 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-3">
+  <h2 align="middle">Profile Details</h2>
+       <div class="card-body">
+            <p class="text-gray-900 p-3 m-0">Name : {{profile.name}}</p>
+            {% if msg %}
+            <div class="alert alert-danger alert-dismissible fade show">
+               <button type="button" class="close" data-dismiss="alert">&times;</button>
+               <strong>Error!</strong> {{msg}}
+            </div>
+            {% endif %}
+        </div>
+  <div class="row">
+  
+  <div class="col-md-4">
+    <form method="post" enctype="multipart/form-data" novalidate>
+        <div class="card-content">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.book.label }} : {{ form.book }} 
+                {{ form.book.errors }} 
+              </div>
+        </div>
+        <div class="card-action right-align">
+            <a href="{% url 'profile-detail' pk=profile.user.pk %}" class="btn btn-primary">
+               Cancel
+            </a>
+            {% if book.pk %}
+            <button type="submit" class="btn btn-primary">
+               Update
+            </button>
+            {% else %}
+            <button type="submit" class="btn btn-primary">
+               Add
+            </button>
+            {% endif %}
+        </div>
+   </form>
+  </div>
+   
+  </div>
+  <br>
+</div>
+{% endblock %}

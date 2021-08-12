@@ -1,0 +1,30 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-3">
+  <h2 align="middle">Profile Detail</h2>
+
+       <div class="card-body">
+            <p class="text-gray-900 p-3 m-0">Name : {{profile.user.first_name}}</p>
+            <p class="text-gray-900 p-3 m-0">Short Description : {{profile.short_desc}}</p>
+            <p class="text-gray-900 p-3 m-0">Long Description : {{profile.long_desc|safe}}</p>
+            <p class="text-gray-900 p-3 m-0">Year of Passing : {{profile.year_of_passing}}</p>
+            <p class="text-gray-900 p-3 m-0">Certificate : {{profile.certificate}}</p>
+            <p class="text-gray-900 p-3 m-0">Image : {{profile.image}}</p>
+
+            <a href="{% url 'profile-update' pk=profile.user.pk%}" class="btn btn-primary">
+               Edit
+            </a>
+           
+         
+            {% if msg %}
+            <div class="alert alert-danger alert-dismissible fade show">
+               <button type="button" class="close" data-dismiss="alert">&times;</button>
+               <strong>Error!</strong> {{msg}}
+            </div>
+            {% endif %}
+        </div>
+</div>
+{% endblock %}
